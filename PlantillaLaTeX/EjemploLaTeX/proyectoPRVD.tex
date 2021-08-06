@@ -1,0 +1,884 @@
+\documentclass[11pt,twoside]{article}
+
+% La extensión total de la memoria deberá ser de un máximo de 50 páginas (excluidos resumen, índice y posibles anexos).
+
+% Según las recomendaciones de estilo, el formato de la memoria se ajustará a lo siguiente:
+% ? Formato del papel: DIN A4.
+% ? Impresión a dos caras.
+% ? Márgenes: superior e inferior, 2.5 cm. Márgenes laterales: páginas impares, izquierdo 4 cm y derecho 2 cm; páginas % pares, izquierdo 2 cm y derecho 4 cm.
+% ? Tipo de letra: Times New Roman de 12 puntos.
+% ? Interlineado: 1.5 líneas.
+% ? Alineación: justificación completa.
+% ? Sangrado de párrafo: 0.5 cm la primera línea de cada párrafo. No se
+%pondrá espacio entre párrafos.
+% ? Las páginas deberán ir numeradas en números arábigos.
+
+% Teniendo en cuenta las indicaciones previas, definimos el estilo en LaTeX:
+
+% Indicaciones para el idioma:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-lcroman]{babel}
+
+% Formato de letra Times:
+%\usepackage{mathptmx}
+%\usepackage{newtxtext}
+%\usepackage{newtxtext,newtxmath}
+% Adaptación de itemize y enumerate a los usos tipograficos españoles:
+\let\layoutspanish\relax
+\addto\captionsspanish{\def\tablename{Tabla}} % para que escriba "Tabla" en lugar de "Cuadro"
+\unaccentedoperators  % para que no acentúe los operadores
+
+% Área de impresión de una página:
+\usepackage[a4paper]{geometry}
+ 	\geometry{hmargin={2.5cm,2.5cm},height=24cm}
+	%\geometry{hmargin={4cm,2cm},vmargin={2.5cm,2.5cm}} % Recomendacion de estilo TFG
+
+% Formato de algunas distancias:
+\renewcommand{\baselinestretch}{1.4}    % separación entre líneas de un mismo párrafo
+%\renewcommand{\baselinestretch}{1.5}   % Recomendacion de estilo TFG
+\setlength{\partopsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\parskip}{0.1\baselineskip}   % separación entre párrafos, tu default era: 0.25
+%\setlength{\parskip}{0\baselineskip}     % Recomendacion de estilo TFG
+
+\renewcommand{\textfraction}{0.1}   % mínima fracción de la página para el texto
+\renewcommand{\topfraction}{1}      % máxima fracción de la página para objetos flotantes en la parte superior
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\floatpagefraction}{1}
+
+\setcounter{totalnumber}{5}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+
+% Adaptación de las "caption" de los entorns "figure" y "table":
+\usepackage{caption}
+\setcaptionwidth{\textwidth}
+\addtolength{\captionwidth}{-2\parindent}
+\captionsetup{margin=\leftmargini,%
+  width=\captionwidth,%
+  labelfont={up,bf},%
+  font={small,sl},%
+  %indention={\captionindent
+}
+
+% Indentación del primer párrafo de una sección:
+\usepackage{indentfirst}
+
+% Definición del color grisclaro en la salida PDF:
+\usepackage[pdftex]{color}
+
+% Gráficos:
+%\usepackage[pdftex]{graphicx} % Warning: genera conflicto con el package menukeys 
+
+% Paquetes recomendados para la inclusión de fórmulas matemáticas:
+\usepackage{amsmath}
+\allowdisplaybreaks  % para que pueda partir fórmulas que ocupan más de una línea, necesita el paquete anterior
+\usepackage{amssymb} % para cargar algunos símbolos como \blacksquare y \square
+\usepackage{amsfonts} % para cargar algunas fuentes en estilo matemático
+\usepackage{enumerate}
+\numberwithin{equation}{section}
+%\numberwithin{equation}{subsection}
+\usepackage{cancel}
+% To get a bold greek letter
+\usepackage{bm}
+% To write vertical equals
+\usepackage{mathtools}
+
+% To write vertical equals above
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+%\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+\newcommand{\equalabove}[2]{\overbrace{\scriptstyle\overset{\mkern4mu}{#1}}^{\overset{#2}{\shortparallel}}}
+%$\equalto{(x + z)}{5} + \equalto{(y + d)}{5} = 10$
+
+% To write vertical equals below
+%\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+%$$\stackbelow{(x+z)}{5}+\stackbelow{(y+d)}{5} = 10.$$
+
+%\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+
+
+% Teoremas (se pueden definir todos los que se necesiten):
+
+%\newtheorem{theorem}{Teorema}[section]
+%\newtheorem{proposition}[theorem]{Proposición}
+%\newtheorem{definition}[theorem]{Definición}
+%\newtheorem{lemma}[theorem]{Lema}
+%\newtheorem{corollary}[theorem]{Corolario}
+%\newtheorem{example}[theorem]{Ejemplo}
+%\newtheorem{app}[theorem]{Aplicación}
+%\newtheorem{remark}[theorem]{Observación}
+%\newtheorem{agrad}[theorem]{Agradecimiento}
+%\newtheorem{algo}[theorem]{Algoritmo}
+%\newtheorem{axiom}[theorem]{Axioma}
+%\newtheorem{case}[theorem]{Caso}
+%\newtheorem{conclu}[theorem]{Conclusión}
+%\newtheorem{conjectura}[theorem]{Conjetura}
+%\newtheorem{notac}[theorem]{Notación}
+%\newtheorem{soluc}[theorem]{Solución}
+%\newtheorem{summary}[theorem]{Sumario}
+%
+%
+%\newtheorem{proof}[theorem]{Demostración.}
+%\renewenvironment{proof}{\emph{Demostración.}} {\quad \hfill $\blacksquare$ \newline} % para que aparezca un cuadrado negro al acabar la demostración
+
+\usepackage{wrapfig}
+
+\usepackage{mathrsfs} %Esto es para usar distintos estilos de letras
+
+\usepackage{amsthm}%Este paquete nos permite adecuar los estilos correspondientes:
+\theoremstyle{plain}
+	\newtheorem{teorema}{Teorema}[section]
+	\newtheorem{prop}[teorema]{Proposición} 
+	\newtheorem{lema}[teorema]{Lema}
+	\newtheorem{corolario}[teorema]{Corolario}
+	\newtheorem{propdef}[teorema]{Proposición-Definición}
+	
+\theoremstyle{definition}
+	\newtheorem{definicion}[teorema]{Definición}
+	\newtheorem{propiedades}[teorema]{Propiedades}
+	\newtheorem{ejemplo}[teorema]{Ejemplo}
+
+\theoremstyle{remark} 
+	\newtheorem*{nota}{Nota}
+	\newtheorem*{notac}{Notación}	
+
+% El inconveniente de definirlo asi es que luego no te deja poner labels, pues no las identifica
+\newenvironment{RLejemplo}
+   {\colorlet{shadecolor}{gray!25}\begin{shaded}\begin{ejemplo}}
+   {\end{ejemplo}\end{shaded}}
+
+% es mejor definirlo como sigue y en el cuerpo del documento añadir el environment theorem
+\newenvironment{grayshaded}
+   {\colorlet{shadecolor}{gray!20}\begin{shaded}}
+   {\end{shaded}}
+
+%Para alternar el shaded
+\newenvironment{yellowshaded}
+   {\colorlet{shadecolor}{yellow!30}\begin{shaded}}
+   {\end{shaded}}
+   
+\newenvironment{blueshaded}
+   {\colorlet{shadecolor}{blue!15}\begin{shaded}}
+   {\end{shaded}}
+   
+\newenvironment{softblueshaded}
+   {\colorlet{shadecolor}{softblue}\begin{shaded}}
+   {\end{shaded}}
+
+%Definición de un NUEVO ENTORNO para las demostraciones. Podría haber utilizado el entorno "proof", pero en éste último los cuadros son blancos y Xaro utilizó cuadros negros. 	
+\newenvironment{demo}
+	{\vspace*{-1cm} \noindent \textit{Demostración:}} {\quad \hfill $\blacksquare$} 
+
+%Acabamos 
+
+%%Paquetes de estructuración 
+\usepackage{fancyhdr} %Paquete para modificar márgenes internos de las listas itemize y enumerate con la opción "leftmargin". También sirve para modificar los encabezamientos.
+\usepackage{enumitem} %Si cargo showframe junto con enumitem se hacen visibles los márgenes.
+\usepackage{array}
+\usepackage{multirow}
+
+%Paquete de redireccionamiento personalizado
+\usepackage[pdftex]{hyperref}
+%Nota:preguntar cómo personalizar los colores de redireccionamiento como en los ejercicios propuestos de Julio.
+
+%\renewcommand{\theequation}{\thesubsection.\arabic{equation}}
+
+%Paquetes de composición visual
+%\usepackage{color}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{pifont}
+
+\usepackage{float} % Refuerza el indicador de posición para entornos figure, table, wrapfigure, etc. buy
+% you have to use with the option [H] (equivalent to h! which is a default parameter) so as to place the float at precisely location in the LATEX code. 
+\usepackage{capt-of}
+%\usepackage{captdef} % hace lo mismo que capt-of
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definición de cabeceras y pies de página: %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% AUTOR Y TITULO %%%%%% 
+
+\usepackage{fancyhdr}                     % para definir distintos tipos de cabeceras y pies de página
+
+%\newcommand{\RunningAuthor}{José Antonio Esteban Rodríguez}
+%\newcommand{\Author}[1]{\renewcommand{\RunningAuthor}{#1}}
+%\renewcommand{\leftmark}{\RunningAuthor}
+%
+%\newcommand{\RunningTitle}{Redes Bayesianas con R}
+%\newcommand{\Title}[1]{\renewcommand{\RunningTitle}{#1}}
+%\renewcommand{\rightmark}{\RunningTitle}
+%
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LO]{\small \slshape \leftmark}    % lo que aparece en la parte izquierda de la páginas impares
+%\fancyhead[RE]{\small \slshape \rightmark}   % lo que aparece en la parte derecha de las páginas pares
+%\fancyhead[RO,LE]{\small \slshape \thepage}  % el número de página aparece en la parte exterior de la cabecera
+
+%%%%%% SECCION Y SUBSECCION %%%%%% 
+
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LE]{\thepage $\quad$ \includegraphics[scale=0.06]{logotipo_master.png}}
+\fancyhead[RO]{\includegraphics[scale=0.06]{logotipo_master.png} $\quad$ \thepage}
+\fancyhead[LO]{\small \slshape\nouppercase{\leftmark}}
+\fancyhead[RE]{\small \slshape\nouppercase{\rightmark}}
+%\fancyfoot[C]{\fbox{\includegraphics[scale=0.1]{logotipo_master.png}}}
+\pagestyle{fancy}
+
+%	\fancyhf{}
+%	\fancyhead[LO]{\small \slshape \rightmark}
+%	\fancyhead[RE]{\small \slshape \leftmark}	
+%	\fancyhead[RO,LE]{\small \slshape \thepage}	
+%	
+%	\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}} % \thesection\ #1 si no quieres el punto 
+%	\renewcommand{\subsectionmark}[1]{\markright{\thesubsection. #1}}
+%	\renewcommand{\headrulewidth}{0.6pt}
+%	\renewcommand{\footrulewidth}{0pt}	
+%	\setlength{\headheight}{1.5\headheight}
+%
+%\renewcommand{\headrulewidth}{0.6pt}         % grueso de la línea horizontal por debajo de la cabecera de la página
+%\renewcommand{\footrulewidth}{0pt}           % grueso de la línea horizontal por encima del pie de página
+%                                             % en este caso está vacío
+%\setlength{\headheight}{1.5\headheight}      % aumenta la altura de la cabecera en una parte y media
+%
+%\fancypagestyle{plain}{%                     % redefinición del estilo de página 'plain'
+%  \fancyhf{}                                 % limpia todas las cabeceras y pies de página
+%  \setlength{\headwidth}{\textwidth}
+%  \fancyfoot[C]{\small \slshape \thepage}    % excepto el centro del pie de página
+%  \renewcommand{\headrulewidth}{0pt}
+%  \renewcommand{\footrulewidth}{0pt}
+%  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Instrucciones que se usan frecuentemente
+\newcommand{\abs}[1]{\ensuremath{|#1|}}
+
+% Datos del trabajo y autor:
+\title{Título}
+\author{Javier Belmar Tevar\\*[1em]
+\begin{minipage}{0.75\textwidth}
+\footnotesize \itshape
+\begin{center}
+Universidad de Alicante \\
+Máster en Ciencia de Datos
+\end{center}
+\end{minipage}
+}
+\date{Febrero 2020}
+
+% Para incluir paginas de otro pdf (por ejemplo, la de la portada):
+\usepackage{pdfpages}
+
+% Estas dos lineas de abajo las usare para hacer cuadros con sombras y resaltar	
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{224,238,175}
+%\begin{shaded} \end{shaded}
+
+\usepackage{mdframed}
+
+%\newmdenv[
+%  leftmargin = 0pt,
+%  innerleftmargin = 1em,
+%  innertopmargin = 0pt,
+%  innerbottommargin = 0pt,
+%  innerrightmargin = 0pt,
+%  rightmargin = 0pt,
+%  linewidth = 4pt,
+%  topline = false,
+%  rightline = false,
+%  bottomline = false,
+%  linecolor=blue,
+%  backgroundcolor=softblue
+%  ]{vbg}
+
+\newmdenv[%
+  backgroundcolor=softblue,
+  linecolor=blue,
+  linewidth=3.5pt,
+  topline = false,
+  rightline = false,
+  bottomline = false,
+  innermargin =-0.02cm,
+  outermargin =-0.05cm,]{ejercicio}
+
+%Paquete para hacer que las "Referencias" formen parte del índice sin numerarse.
+\usepackage[nottoc]{tocbibind}
+\usepackage{natbib} % para omitir los corcheres/parentesis de la bibliografia que son feos
+\renewcommand{\tocbibname}{Referencias} %De no utilizar esto, se refleja Bibliografía y el trabajo presente no es de tal calibre como para utilizar dicho término, por tanto, se ha considerado utilizar Referencias
+
+% Si hay mas de dos paginas en tableofcontents entonces \thispagestyle{empty} no funciona a partir de 
+% la segunda pagina
+%\addtocontents{toc}{\protect\thispagestyle{empty}} % Este comando hay que situarle en el propio cuerpo del documento
+
+% Para indicar el inicio de la enumeracion de paginas a partir de cuando se desee con el correspondiente comando
+\usepackage{afterpage}
+%\usepackage{emptypage}
+
+% To ensure that figures appear in the section they're associated with
+% \usepackage[section]{placeins}
+
+% To add the subsection in the figure environment
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+% Para crear los anexos tal y como me gusta a mí
+\usepackage{appendix}
+\renewcommand{\appendixname}{Anexos} % Opcional: descomentar para englobar los subanexos en un anexo indicado en el Indice
+\renewcommand{\appendixtocname}{Anexos} % Opcional: descomentar para englobar los subanexos en un anexo indicado en el Indice
+\renewcommand{\appendixpagename}{Anexos} % Opcional: descomentar para englobar los subanexos en un anexo indicado en el Indice
+%\addto\captionsspanish{\renewcommand{\chaptername}{}}
+\addto\captionsspanish{\renewcommand{\listfigurename}{Índice de Imágenes}} % funciona junto a \listoffigures
+\addto\captionsspanish{\renewcommand{\figurename}{Imagen}}
+\addto\captionsspanish{\def\tablename{Tabla}}
+\addto\captionsspanish{\renewcommand{\listtablename}{Índice de Tablas}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CONFIGURACION \subsubsubsection %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{titlesec}
+%
+\setcounter{secnumdepth}{4}
+%\setcounter{tocdepth}{4}
+%
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{eurosym}
+
+% Pictures side by side
+	
+\usepackage[lofdepth,lotdepth]{subfig}
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CONFIGURACION BOXES %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{color}
+%\definecolor{myblue}{rgb}{.8, .8, 1}
+%\usepackage{empheq}
+%
+%\newlength\mytemplen
+%\newsavebox\mytempbox
+%
+%\makeatletter
+%\newcommand\mybluebox{%
+%    \@ifnextchar[%]
+%       {\@mybluebox}%
+%       {\@mybluebox[0pt]}}
+%
+%\def\@mybluebox[#1]{%
+%    \@ifnextchar[%]
+%       {\@@mybluebox[#1]}%
+%       {\@@mybluebox[#1][0pt]}}
+%
+%\def\@@mybluebox[#1][#2]#3{
+%    \sbox\mytempbox{#3}%
+%    \mytemplen\ht\mytempbox
+%    \advance\mytemplen #1\relax
+%    \ht\mytempbox\mytemplen
+%    \mytemplen\dp\mytempbox
+%    \advance\mytemplen #2\relax
+%    \dp\mytempbox\mytemplen
+%    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+%
+%\makeatother
+
+\usepackage{empheq}
+%\usepackage[most]{tcolorbox} lo necesito para % \newtcbox
+%
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=black,
+    colback=shadecolor, boxrule=0.8pt,
+    #1}
+
+%%%%%%%%%%%%%%%%%%
+%% CAJA PORTADA %%
+%%%%%%%%%%%%%%%%%%
+
+% \definecolor{GshadowColor}{RGB}{157,194,80}
+
+\makeatletter
+\newcommand\Bshadowbox{\VerbBox\@Bshadowbox}
+\def\@Bshadowbox#1{%
+  \setbox\@fancybox\hbox{\fbox{#1}}%
+  \leavevmode\vbox{%
+    \offinterlineskip
+    \dimen@=\shadowsize
+    \advance\dimen@ .5\fboxrule
+    \hbox{\copy\@fancybox\kern.5\fboxrule\lower\shadowsize\hbox{%
+      \color{softblue}\vrule \@height\ht\@fancybox \@depth\dp\@fancybox \@width\dimen@}}%
+    \vskip\dimexpr-\dimen@+0.5\fboxrule\relax
+    \moveright\shadowsize\vbox{%
+      \color{softblue}\hrule \@width\wd\@fancybox \@height\dimen@}}}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CODE CHUNK SQL, R, DOS %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{xstring}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\definecolor{columnahs}{rgb}{0.592,0.592,0.305}
+\definecolor{YellowGreen}{RGB}{143,212,91}
+\definecolor{RoyalBlue}{RGB}{30,116,255}
+
+\makeatletter
+\newif\ifcolname
+\colnamefalse
+
+\def\keywordcheck{%
+\IfStrEq*{\the\lst@token}{select}{\global\colnametrue}{}%
+\IfStrEq*{\the\lst@token}{where}{\global\colnametrue}{}%
+\IfStrEq*{\the\lst@token}{from}{\global\colnamefalse}{}%
+\color{blue}%
+}
+\def\setidcolor{%
+\ifcolname\color{purple}\else\color{black}\fi%
+}
+\makeatother
+
+\lstdefinestyle{sql}
+{%
+    backgroundcolor=\color{gray!11},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    commentstyle=\color{dkgreen},
+    deletekeywords={day},
+    escapeinside={[*}{*]}, % %* codigo latex *) entre los delimitadores se admite codigo latex fuera sin verse afectado por el code chunk
+    extendedchars=true,
+    frame=single,
+    keepspaces=true,
+    language=SQL,
+    otherkeywords={is,REPLACE, MODEL, stddev},
+    morekeywords={*,modify,MODIFY,...},
+    keywordstyle=\keywordcheck,
+    identifierstyle=\setidcolor,
+    numbers=left,
+    numbersep=15pt,
+    numberstyle=\tiny,
+    rulecolor=\color{ltgray},
+    showspaces=false,
+    showstringspaces=false, 
+    showtabs=false,
+    stepnumber=1,
+    %stringstyle=\color{yellow},
+    tabsize=4,
+    title=\lstname
+}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\lstdefinestyle{R}
+{  
+  language=R,                     % the language of the code
+  basicstyle=\footnotesize\ttfamily, 	% the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{black},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{RoyalBlue},      % keyword style
+  commentstyle=\color{YellowGreen},   % comment style
+  numbersep=13pt,				  % how far the line-numbers are from the code
+  escapeinside={[*}{*]},
+  xleftmargin=0.12cm,
+  xrightmargin=0.12cm,
+  %morekeywords={CHECK},
+  %deletedelim=_,
+%     language = C++,
+%      basicstyle=\small\ttfamily,
+%      breaklines=true,
+%      morekeywords={CHECK},
+%      keywordstyle=\color{black}\bfseries\itshape,
+%      commentstyle=\color{black}\bfseries,
+%      alsoother={\#},
+%     deletekeywords ={_},
+%      deletedelim=*[directive]\#
+literate = {_}{{\_}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1
+}
+
+
+%%%% JavaScript %%%%%
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  basicstyle=\footnotesize\ttfamily, 	% the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{black},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+  % Literals, primitive types, and reference types.
+  morekeywords=[2]{false, null, true, boolean, number, undefined,
+    Array, Boolean, Date, Math, Number, String, Object},
+  % Built-ins.
+  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  sensitive,
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morecomment=[s]{/**}{*/}, % JavaDoc style comments
+  morestring=[b]',
+  morestring=[b]",
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  escapeinside={[*}{*]},
+  xleftmargin=0.12cm,
+  xrightmargin=0.12cm,
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  literate = {_}{{\_}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1
+}[keywords, comments, strings]
+%%%% Python %%%%%
+
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+%\lstloadlanguages{Python}
+\lstdefinestyle{Python}{
+language=Python, 						% the language of the code
+basicstyle=\footnotesize\ttfamily,		% the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize\color{black},  % the style that is used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+backgroundcolor=\color{ltgray!10!white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,                   % adds a frame around the code
+otherkeywords={self},    
+rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+commentstyle=\color[HTML]{228B22}\sffamily,   % comment style
+numbersep=12pt,      
+keywordstyle=\ttfamily\color{blue!90!black},
+keywords=[2]{True,False},
+keywords=[3]{ttk},
+keywordstyle={[2]\ttfamily\color{yellow!20!orange}},
+keywordstyle={[3]\ttfamily\color{red!80!orange}},
+emph={MyClass,__init__},          
+emphstyle=\ttfamily\color{red!80!black},    
+stringstyle=\color{green!80!black},
+showstringspaces=false,
+escapeinside={[*}{*]}        
+}
+
+%%%% DOS %%%%% CONSOLA NEGRA sin white lines
+
+\usepackage{tcolorbox} % USO tcolorbox junto con newtcblisting para resolver las whitelines de los code chunks. Cuando el fondo es negro es horrible verlas.
+\tcbuselibrary{listings}
+ %\tcbuselibrary{listings}
+\definecolor{lbcolor}{rgb}{0.1,0.1,0.1}
+
+\lstdefinestyle{DOSSTYLE}
+{
+    %%%%% backgroundcolor=\color{black}, esto es lo que me genera las lineas blancas
+    basicstyle=\scriptsize\color{black}\ttfamily,
+	escapeinside={[*}{*]}, % %* codigo latex *) entre los delimitadores se admite codigo latex fuera sin verse afectado por el code chunk
+	literate = {_}{{\_}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1
+}
+\newtcblisting{DOS}{
+      colback=white,
+      listing only,
+      listing options={style=DOSSTYLE}   
+}
+
+
+%%%% DOS %%%%% CONSOLA NEGRA sin white lines
+
+\usepackage{tcolorbox} % USO tcolorbox junto con newtcblisting para resolver las whitelines de los code chunks. Cuando el fondo es negro es horrible verlas.
+\tcbuselibrary{listings}
+ %\tcbuselibrary{listings}
+\definecolor{lbcolor}{rgb}{0.1,0.1,0.1}
+
+\lstdefinestyle{DOSSTYLENEGRA}
+{
+    %%%%% backgroundcolor=\color{black}, esto es lo que me genera las lineas blancas
+    basicstyle=\scriptsize\color{white}\ttfamily,
+	escapeinside={[*}{*]}, % %* codigo latex *) entre los delimitadores se admite codigo latex fuera sin verse afectado por el code chunk
+		literate = {_}{{\_}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?``}}1 {¡}{{!``}}1
+}
+
+\newtcblisting{DOSNEGRA}{
+      colback=black,
+      listing only,
+      listing options={style=DOSSTYLENEGRA}   
+}
+%%%%%%%%%%%%%%
+
+%%%% DOSTINY %%%%% CONSOLA NEGRA sin white lines
+
+\usepackage{tcolorbox} % USO tcolorbox junto con newtcblisting para resolver las whitelines de los code chunks. Cuando el fondo es negro es horrible verlas.
+\tcbuselibrary{listings}
+ %\tcbuselibrary{listings}
+\definecolor{lbcolor}{rgb}{0.1,0.1,0.1}
+
+\lstdefinestyle{DOSTINYSTYLE}
+{
+    %%%%% backgroundcolor=\color{black}, esto es lo que me genera las lineas blancas
+    basicstyle=\tiny \color{black}\ttfamily,
+    escapeinside={[*}{*]} % %* codigo latex *) entre los delimitadores se admite codigo latex fuera sin verse afectado por el code chunk
+}
+\newtcblisting{DOSTINY}{
+      colback=white,
+      listing only,
+      listing options={style=DOSTINYSTYLE}
+}
+
+%%%%%%%%%%%%%%
+
+\newcommand{\column}[1]{\footnotesize\textcolor{columnahs}{#1}}
+
+
+% Para empezar en 0 el indice toc
+\setcounter{section}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% TIKZ para GRAFOS %%
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+%\usepackage {xcolor}
+\definecolor{processblue}{cmyk}{0.96,0,0,0}
+
+\usepackage{schemata}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PARA CREARME LOS DIAGRAMAS BN CON SOFT BLUE %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{dcolumn} % \newcolumntype{M}[1]{D{.}{.}{1.#1}}
+\newcolumntype{M}[1]{D{.}{.}{1.#1}}
+\usepackage{booktabs} % \toprule
+\usetikzlibrary{positioning,shapes,arrows}
+
+
+% Color de Josue
+\definecolor{softblue}{RGB}{218,227,243}
+
+% Para las tablas de la BN
+\usepackage{colortbl} % para usar \rowcolor{softblue}
+\newcolumntype{a}{>{\columncolor{softblue}}c} % para usar a = c con color en tabular
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+
+%% WARNING SYMBOL	
+\usepackage{stackengine}
+\usepackage{scalerel}
+\newcommand\dangersign[1][2ex]{%
+  \renewcommand\stacktype{L}%
+  \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
+}
+
+\usepackage{textcomp} % comillas
+
+\newcommand{\true}{\text{v}}
+\newcommand{\false}{\text{f}}
+
+% simbolo package -> install
+% Muy bueno, para paquetes menu
+%https://tex.stackexchange.com/questions/387952/create-windows-symbol-and-apple-logo-in-package-menukeys
+%\usepackage{menukeys}
+%\usepackage{graphics}
+\usepackage[os=win]{menukeys}
+
+
+% hacer labels eqref con section.subsection.nequation
+\counterwithin{equation}{subsection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%CUERPO DEL DOCUMENTO%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Minería de textos: Práctica 2}
+\author{Javier Belmar Tevar }
+\date{Febrero 2021}
+
+
+
+\begin{document}
+
+% Para introducir la portada en castellano, se guardar anexo-1-portada-memoria-tfg-matematicas.pdf en el mismo directorio:
+\maketitle
+
+\newpage
+
+% Después de la portada, se introducirá un resumen del Trabajo Fin de Grado (máximo 500 palabras) en una de las lenguas oficiales y en inglés, junto con las palabras clave (de 3 a 5).
+\thispagestyle{empty}
+
+% A continuación, se incluirá el índice del trabajo y, seguidamente, se desarrollará la memoria.
+\newpage
+% MUY IMPORTANTE RESPETAR LA ESTRUCTURA PARA QUE EL ESTILO DE LAS PAGINAS SEA BLANCO PARA TODAS LAS PAGINAS DEL TABLE OF CONTENTS
+\thispagestyle{empty}
+\pagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\cleardoublepage
+\pagestyle{fancy}
+%\afterpage{\thispagestyle{empty} \null\newpage}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% NO TOCAR NADA DE ARRIBA SI NO SABES QUE TOCAS %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% ESCRIBIR AQUI: DOCUMENTO EMPIEZA AQUI  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Pasos a seguir}
+
+A continuación se muestran los pasos que se han seguido para correcta instalación de Freeling.
+
+\section{Máquina virtual y sistema operativo}
+
+Debido a algunos problemas que se han tenido para la instalación de la herramienta en el sistema operativo (SO) Windows, se ha optados su instalación en Ubuntu. Para ello, se ha creado una máquina virtual que alberga el SO de Ubuntu 20.04.2 LTS.
+
+\section{Instalación herramienta y dependencias}
+
+\subsection{Descarga}
+Se ha descargado el archivo .deb del repositiorio de github: freeling-4.2-focal-amd64.deb
+
+\subsection{Configuración del gestor de desempaquetado e instalación}
+
+Como se ha realizado una instalación limpia de Ubuntu primero es necesario realizar la configuración inicial del gestor de paquetería dpkg de Debian para poder instalar la herramienta.
+ 
+\begin{lstlisting}[language=bash]
+  $ sudo dpkg --configure - a
+\end{lstlisting}
+
+ 
+\subsection{Instalación dependecias (Sistema/librerías)} 
+
+
+Comenzamos por instalar 
+
+\begin{lstlisting}[language=bash]
+  $ sudo apt-get update
+\end{lstlisting}
+	
+
+\begin{lstlisting}[language=bash]
+  $ wget http://tex.stackexchange.com
+\end{lstlisting}
+	
+\begin{lstlisting}[language=bash]
+  $ sudo apt-get install build-essential cmake libboost-system-dev libboost-program-options-dev libboost-thread-dev 
+\end{lstlisting}
+	
+
+\begin{lstlisting}[language=bash]
+  $ sudo apt-get install libboost-regex-dev libicu-dev zlib1g-dev
+\end{lstlisting}
+	
+
+
+
+4. Instalación Freeling
+
+Para el fichero descargado en el paso 1, se ha creado una carpeta que lo contiene. En ella se ha abierto la consola para ejecutar el comando:
+
+\begin{lstlisting}[language=bash]
+ 	$ sudo dpkg -i freeling-4.2-focal-amd64.deb
+\end{lstlisting}
+
+	
+
+De esta forma se ha conseguido instalar Freeling.
+
+\subsection{Máquina virtual y sistema operativo}
+
+\subsection{Máquina virtual y sistema operativo}
+
+\subsection{Máquina virtual y sistema operativo}
+
+\subsection{Máquina virtual y sistema operativo}
+
+\section{Fuente de datos}
+
+
+
+
+
+% No hacen falta todos. (En el pdf que paso José tenemos algunos hechos)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% NO TOCAR LO DE ABAJO SI NO SABES QUE ES %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Para crear los anexos
+\appendix
+\clearpage % Opcional: descomentar para englobar los subanexos en un anexo indicado en el Indice
+\addappheadtotoc % Opcional: descomentar para englobar los subanexos en un anexo indicado en el Indice
+%\appendixpage % Opcional: descomentar para englobar los subanexos en en un anexo indicado en el Indice
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% ESCRIBIR AQUI: ANEXO EMPIEZA AQUI  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newpage
+
+\bibliographystyle{apalike}
+\bibliography{referencias}
+
+\end{document}

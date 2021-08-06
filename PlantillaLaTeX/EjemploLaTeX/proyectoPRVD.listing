@@ -1,0 +1,6 @@
+> EJ5(nodosSurvey,nivelesSurvey,arcosSurvey)
+[1] "Parámetros de las distribuciones locales de la BN:  21"
+[1] 21
+> EJ5(nodosBurg,nivelesBurg,arcosBurg)
+[1] "Parámetros de las distribuciones locales de la BN:  10"
+[1] 10

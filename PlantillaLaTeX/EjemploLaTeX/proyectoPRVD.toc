@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {0}Pasos a seguir}{1}{section.0}%
+\contentsline {section}{\numberline {1}Máquina virtual y sistema operativo}{1}{section.1}%
+\contentsline {section}{\numberline {2}Instalación herramienta y dependencias}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Descarga}{1}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Configuración del gestor de desempaquetado e instalación}{1}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Instalación dependecias (Sistema/librerías)}{1}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Máquina virtual y sistema operativo}{2}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Máquina virtual y sistema operativo}{2}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Máquina virtual y sistema operativo}{2}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Máquina virtual y sistema operativo}{2}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Fuente de datos}{2}{section.3}%

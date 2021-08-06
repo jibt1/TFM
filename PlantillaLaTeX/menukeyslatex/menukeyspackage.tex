@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage[os=win]{menukeys}
+\usepackage{fontawesome}
+\makeatletter
+\tw@make@key@box{OS@mac}{\faApple}
+\tw@make@key@box{OS@win}{\faWindows}
+\tw@make@key@macro*{\OS}
+\tw@make@key@box{capslock@win}{\textsf{CapsLock}}
+\tw@make@key@box{capslock@mac}{\textsf{caps lock}}
+\makeatother
+
+\begin{document}
+Test of capslock: \keys{\capslock}, \keys{\capslockwin}, \keys{\capslockmac}, \capslock, \capslockwin, \capslockmac
+
+\strut
+
+Test of OS key: \keys{\OS}, \keys{\OSwin}, \keys{\OSmac}, \OS, \OSwin, \OSmac
+
+    You can visualize paths
+
+    \directory{/home/moose/Desktop/manual.tex}
+
+    or menus
+
+    \menu{View > Highlight Mode > Markup > LaTeX} 
+
+    or key press combinations:
+
+    \keys{\ctrl + \shift + F} is for formatting
+    in Eclipse.
+
+    You can also visualize \keys{\tab}, \keys{\capslock}, \keys{\Space}, 
+    \keys{\arrowkeyup} and many more.
+    
+    \directory{Item 1 / Item 2 / Item 3 / ...}
+\end{document}
